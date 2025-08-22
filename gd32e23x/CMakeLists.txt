@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.31)
+cmake_minimum_required(VERSION 3.22)
 
 set(CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_LIST_DIR}/gd32e23x/gcc-cortex-m23.cmake")
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)

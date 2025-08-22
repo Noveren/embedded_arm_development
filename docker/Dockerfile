@@ -1,18 +1,16 @@
-FROM alpine:3.22.1
+FROM ubuntu:24.04
 
-ARG TOOLS_PATH=/opt/gcc-arm-none-eabi
-
-# x86_64 darwin-arm64
 ARG TARGETARCH
+ARG TOOLS_PATH=/opt/gcc-arm-none-eabi
 ARG ARM_VERSION=14.3.rel1
 
-RUN apk update && apk add --no-cache --virtual build-dependences \
-	build-base \
-	libc6-compat \
-	curl \
-	cmake \
-	ninja \
-	just
+RUN apt-get update && \
+    apt-get install ninja-build --no-install-recommends -y && \
+    apt-get install just --no-install-recommends -y && \
+    apt-get install curl -y && \
+    apt-get install xz-utils -y && \
+    apt-get install cmake --no-install-recommends -y && \
+    apt-get clean
 
 RUN mkdir ${TOOLS_PATH} && \
     if [ "$TARGETARCH" = "amd64" ]; then \
@@ -22,7 +20,7 @@ RUN mkdir ${TOOLS_PATH} && \
     else \
         echo "Unsupported architecture: $TARGETARCH" && exit 1; \
     fi && \
-	curl -Lo gcc-arm-none-eabi.tar.xz ${ARM_GCC_URL} && \
+	curl -Lo gcc-arm-none-eabi.tar.xz $ARM_GCC_URL && \
 	tar xf gcc-arm-none-eabi.tar.xz --strip-components=1 -C ${TOOLS_PATH} && \
 	rm gcc-arm-none-eabi.tar.xz && \
 	rm -rf ${TOOLS_PATH}/share/doc

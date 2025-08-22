@@ -12,7 +12,7 @@
 # target_link_options(your_executable PRIVATE $<TARGET_PROPERTY:gd32e23x,INTERFACE_LINK_OPTOINS>)
 # ```
 # TODO gd32e23x.h: HXTAL_VALUE, IRC8M_VALUE, ....
-cmake_minimum_required(VERSION 3.31)
+cmake_minimum_required(VERSION 3.22)
 
 project(
     gd32e23x

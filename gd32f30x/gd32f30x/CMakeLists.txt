@@ -13,7 +13,7 @@
 # ```
 # TODO gd32f30x.h: HXTAL_VALUE, IRC8M_VALUE, ....
 # TODO FPU
-cmake_minimum_required(VERSION 3.31)
+cmake_minimum_required(VERSION 3.22)
 
 project(
     gd32f30x
